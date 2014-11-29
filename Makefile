@@ -1,5 +1,8 @@
 
 BIN_DIR=.
+BASE_DIR=./base
+NET_DIR=./net
+LIB_DIR=./lib
 
 SRC_DIR=.
 
@@ -16,10 +19,10 @@ SRCS := $(filter-out $(EXCLUDE_FILES), $(SRCS))
 OBJS=$(patsubst %.cpp, %.o, $(SRCS))
 
 # Compile Flags
-CXXFLAGS=-I. -Wall -DDEBUG -g -ansi
+CXXFLAGS=-I. -Wall -DDEBUG -g -ansi -I$(BASE_DIR) -I$(NET_DIR)
 
 # Link Flags
-LDFLAGS=
+LDFLAGS=-lpthread -L$(LIB_DIR) -lglog
 
 SERVER=$(BIN_DIR)/server
 
