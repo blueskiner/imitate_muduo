@@ -6,6 +6,8 @@
 // 可以拷贝
 class Socket
 {
+	// 创建socket
+	void create();
 public:
 	Socket();
 	Socket(int fd);
@@ -18,11 +20,8 @@ public:
 	
 	int fd() const;
 	
-	// 创建socket
-	void create();
-	
 	void bind(const InetAddr& addr);
-	void listen();
+	void listen(int backlog);
 	void close();
 	
 	int accept(InetAddr* peeraddr);

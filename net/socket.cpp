@@ -10,6 +10,7 @@
 
 Socket::Socket() : _fd(-1)
 {
+	create();
 }
 
 Socket::Socket(int fd) : _fd(fd)
@@ -80,9 +81,9 @@ void Socket::bind(const InetAddr& addr)
 	}
 }
 
-void Socket::listen()
+void Socket::listen(int backlog)
 {
-	if (0 == ::listen(_fd, 10)) {
+	if (0 == ::listen(_fd, backlog)) {
 		return;
 	} else {
 		LOG(ERROR) << "socket listen error";
