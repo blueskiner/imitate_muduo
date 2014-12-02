@@ -7,6 +7,9 @@
 class Buffer;
 class TCPConnection;
 typedef boost::shared_ptr<TCPConnection> TCPConnectionPtr;
+
+typedef boost::function<void()> TimerCallback;
+
 typedef boost::function<void (const TCPConnectionPtr&)> ConnectionCallback;
 typedef boost::function<void (const TCPConnectionPtr&)> CloseCallback;
 typedef boost::function<void (const TCPConnectionPtr&)> WriteCompleteCallback;
