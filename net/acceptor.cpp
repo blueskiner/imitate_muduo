@@ -37,6 +37,7 @@ void Acceptor::setNewConnectionCallback(const NewConnectionCallback& cb)
 
 void Acceptor::start()
 {
+	LOG(INFO) << "Acceptor::start";
 	_sock.listen(MAX_LISTEN);
 	_acceptChannel.enableReading();
 	/*
@@ -102,7 +103,7 @@ void Acceptor::start()
 void Acceptor::handleAccept()
 {
 	InetAddr peerAddr;
-	
+	LOG(INFO) << "Acceptor::handleAccept";
 	int connfd = _sock.accept(&peerAddr);
 	if (0 <= connfd) {
 		if (_newConnectionCallback) {

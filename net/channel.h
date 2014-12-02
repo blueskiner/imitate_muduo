@@ -30,7 +30,7 @@ private:
 	
 private:
 	EventLoop* _loop;
-	int _epfd;			// 分发器依赖epoll 这个是epoll的文件描述符
+//	int _epfd;			// 分发器依赖epoll 这个是epoll的文件描述符
 	const int _sockfd;	// 具体处理I/O的socket fd
 	int _events;
 	int _revents;		// 接收到的事件

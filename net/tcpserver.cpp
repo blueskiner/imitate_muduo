@@ -24,7 +24,7 @@ void TCPServer::start()
 
 void TCPServer::newConnection(int sockfd, const InetAddr& peerAddr)
 {
-	LOG(INFO) << "TCPServer::newConnection ["
-		<< "] from " << peerAddr.toIP()
+	LOG(INFO) << "TCPServer::newConnection"
+		<< " from " << peerAddr.toIP()
 		<< ":" << peerAddr.toPort();
 }
