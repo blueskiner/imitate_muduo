@@ -17,7 +17,6 @@ void EventLoop::loop()
 	_quit = false;
 	// 下面是epoll经典模式
 	while (!_quit) {
-		LOG(INFO) << "EventLoop::loop";
 		_activeChannels.clear();
 		_poller->poll(_activeChannels);
 		

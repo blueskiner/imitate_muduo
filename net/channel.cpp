@@ -23,17 +23,30 @@ void Channel::handleEvent()
 {
 	// 事件分发处理
 	if(_revents & EPOLLIN) {
-		LOG(INFO) << "Channel::handleEvent EPOLLIN";
 		if (_readEventCallback) {
 			_readEventCallback();
 		}
-	} else if (_revents & EPOLLOUT) {
+	}
+	
+	if (_revents & EPOLLOUT) {
 	}
 }
 
 void Channel::setReadCallback(const ReadEventCallback& cb)
 {
 	_readEventCallback = cb;
+}
+void Channel::setWriteCallback(const EventCallback& cb)
+{
+	_writeEventCallback = cb;
+}
+void Channel::setCloseCallback(const EventCallback& cb)
+{
+	_closeEventCallback = cb;
+}
+void Channel::setErrorCallback(const EventCallback& cb)
+{
+	_errorCallback = cb;
 }
 
 int Channel::getEvents() const
@@ -51,6 +64,23 @@ void Channel::enableReading()
 	LOG(INFO) << "Channel::enableReading";
 	_events |= EPOLLIN;
 	update();
+}
+
+void Channel::disableReading()
+{
+	_events &= ~EPOLLIN;
+	update();
+}
+
+void Channel::enableWriting()
+{
+	LOG(INFO) << "Channel::enableWriting";
+	_events |= EPOLLOUT;
+	update();
+}
+
+void Channel::disableWriting()
+{
 }
 
 int Channel::fd() const
